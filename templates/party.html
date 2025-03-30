@@ -3,9 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Filmoe - Party</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <style>
+        body {
+            background-color: var(--background-color-light);
+            color: var(--text-color-dark);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .party-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            background-color: var(--text-color-light);
+        }
+
+        .qr-image {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        .party-id {
+            font-size: 18px;
+            margin-top: 10px;
+            color: var(--secondary-color-dark);
+        }
+
+        .success-message {
+            color: var(--accent-color);
+            margin-top: 10px;
+        }
+
+        /* Host-specific styling */
+        .host-section {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid var(--primary-color);
+            background-color: var(--primary-color-light);
+            border-radius: 5px;
+        }
+
+        .host-btn {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .host-btn:hover {
+            background-color: var(--primary-color-dark);
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="party-container">
+        <img class="qr-image" src="{{ url_for('static', filename=image_filename) }}" alt="QR Code for Joining">
+        <p class="party-id">Party ID: <strong>{{ id }}</strong></p>
+        <button class="copy-btn" id="copy-button">Copy Join Link</button>
+        <p id="copy-message" class="success-message" style="display: none;">Link copied to clipboard!</p>
+
+        {% if isHost == 'True' %}
+        <div class="host-section">
+            <h2>Host Controls</h2>
+            <p>This section is visible only to the host. You can manage the party here.</p>
+            <button class="host-btn">Manage Party</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById('copy-button').addEventListener('click', function () {
+            const joinUrl = "{{ join_url }}";
+            navigator.clipboard.writeText(joinUrl).then(() => {
+                const copyMessage = document.getElementById('copy-message');
+                copyMessage.style.display = 'block';
+                setTimeout(() => {
+                    copyMessage.style.display = 'none';
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>

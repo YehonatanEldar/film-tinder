@@ -1,0 +1,4 @@
+* Option to add streaming services
+* Option to add usernames
+* Option to play
+* QR Code in cholor scheme

@@ -1,0 +1,25 @@
+:root {
+    /* Primary Colors */
+    --primary-color: #A4303F; /* Blue */
+    --primary-color-dark: #5F1C25;
+
+    /* Secondary Colors */
+    --secondary-color: #E8E9EB; /* Gray */
+    --secondary-color-dark: #BEC0C5;
+
+    /* Background Colors */
+    --background-color-light: #445074; /* Light Background */
+    --background-color-dark: #282F44;     /* Dark Background */
+
+    /* Text Colors */
+    --text-color-light: #5F646D; /* White */
+    --text-color-dark: #42462C; /* Dark Gray */
+
+    /* Border Colors */
+    --border-color: #ddd; /* Light Gray Border */
+    --shadow-color: rgba(0, 0, 0, 0.2); /* Shadow */
+
+    /* Accent Colors */
+    --accent-color: #28a745; /* Green */
+    --accent-color-dark: #1e7e34;
+}

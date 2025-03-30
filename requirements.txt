@@ -1,3 +1,4 @@
 flask
 resuests
 python-dotenv
+qrcode[pil]
